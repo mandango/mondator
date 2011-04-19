@@ -21,6 +21,9 @@
 
 namespace Mandango\Mondator;
 
+use Mandango\Mondator\Definition\Method;
+use Mandango\Mondator\Definition\Property;
+
 /**
  * ClassExtension is the base class for class extensions.
  *
@@ -39,6 +42,9 @@ abstract class ClassExtension
 
     protected $newClassExtensions;
     protected $newConfigClasses;
+
+    protected $twig;
+    protected $twigTempDir;
 
     /**
      * Constructor.
@@ -291,6 +297,104 @@ abstract class ClassExtension
     {
     }
 
+    /**
+     * Twig.
+     */
+    protected function processTemplate(Definition $definition, $name, array $variables = array())
+    {
+        $twig = $this->getTwig();
+
+        $variables['options'] = $this->options;
+        $variables['class'] = $this->class;
+        $variables['config_class'] = $this->configClass;
+        $variables['config_classes'] = $this->configClasses;
+
+        $result = $twig->loadTemplate($name)->render($variables);
+
+        // properties
+        $expression = '/
+            (?P<docComment>\ \ \ \ \/\*\*\n[\s\S]*\ \ \ \ \ \*\/)?\n?
+             \ \ \ \ (?P<static>static\ )?
+            (?P<visibility>public|protected|private)
+            \s
+            \$
+            (?P<name>[a-zA-Z0-9_]+)
+            ;
+        /xU';
+        preg_match_all($expression, $result, $matches);
+
+        for ($i = 0; $i <= count($matches[0]) - 1; $i++) {
+            $property = new Property($matches['visibility'][$i], $matches['name'][$i], null);
+            if ($matches['static'][$i]) {
+                $property->setIsStatic(true);
+            }
+            if ($matches['docComment'][$i]) {
+                $property->setDocComment($matches['docComment'][$i]);
+            }
+            $definition->addProperty($property);
+        }
+
+        // methods
+        $expression = '/
+            (?P<docComment>\ \ \ \ \/\*\*\n[\s\S]*\ \ \ \ \ \*\/)?\n
+            \ \ \ \ (?P<static>static\ )?
+            (?P<visibility>public|protected|private)
+            \s
+            function
+            \s
+            (?P<name>[a-zA-Z0-9_]+)
+            \((?P<arguments>[$a-zA-Z0-9_\\=, ]*)\)
+            \n
+            \ \ \ \ \{
+                (?P<code>[\s\S]*)
+            \n\ \ \ \ \}
+        /xU';
+        preg_match_all($expression, $result, $matches);
+
+        for ($i = 0; $i <= count($matches[0]) - 1; $i++) {
+            $code = trim($matches['code'][$i], "\n");
+            $method = new Method($matches['visibility'][$i], $matches['name'][$i], $matches['arguments'][$i], $code);
+            if ($matches['static'][$i]) {
+                $method->setIsStatic(true);
+            }
+            if ($matches['docComment'][$i]) {
+                $method->setDocComment($matches['docComment'][$i]);
+            }
+            $definition->addMethod($method);
+        }
+    }
+
+    public function getTwig()
+    {
+        if (null === $this->twig) {
+            if (!class_exists('Twig_Environment')) {
+                throw new \RuntimeException('Twig is required to use templates.');
+            }
+
+            $templateDirs = array();
+            $ref = new \ReflectionClass($this);
+            $templateDirs = dirname($ref->getFileName()).'/templates';
+
+            $loader = new \Twig_Loader_Filesystem($templateDirs);
+            $twig = new \Twig_Environment($loader, array(
+                'autoescape'       => false,
+                'strict_variables' => true,
+                'debug'            => true,
+                'cache'            => $this->twigTempDir = sys_get_temp_dir().'Mondator/'.mt_rand(111111, 999999),
+            ));
+
+            $this->configureTwig($twig);
+
+            $this->twig = $twig;
+        }
+
+        return $this->twig;
+    }
+
+    protected function configureTwig(\Twig_Environment $twig)
+    {
+    }
+
     /*
      * Tools.
      */
@@ -301,5 +405,30 @@ abstract class ClassExtension
         }
 
         return new $data['class'](isset($data['options']) ? $data['options'] : array());
+    }
+
+    private function removeDir($target)
+    {
+        $fp = opendir($target);
+        while (false !== $file = readdir($fp)) {
+            if (in_array($file, array('.', '..'))) {
+                continue;
+            }
+
+            if (is_dir($target.'/'.$file)) {
+                self::removeDir($target.'/'.$file);
+            } else {
+                unlink($target.'/'.$file);
+            }
+        }
+        closedir($fp);
+        rmdir($target);
+    }
+
+    public function __destruct()
+    {
+        if ($this->twigTempDir && is_dir($this->twigTempDir)) {
+            $this->removeDir($this->twigTempDir);
+        }
     }
 }

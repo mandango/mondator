@@ -21,6 +21,7 @@
 
 namespace Mandango\Mondator\Tests;
 
+use Mandango\Mondator\Mondator;
 use Mandango\Mondator\Container;
 use Mandango\Mondator\Extension;
 
@@ -132,5 +133,66 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $extension = new ExtensionTesting(array('required' => 'value'));
         $extension->getOption('foobar');
+    }
+
+    public function testTwigSupport()
+    {
+        $mondator = new Mondator();
+        $mondator->setConfigClasses(array(
+            'Model\Article' => array(
+                'fields' => array(
+                    'title'   => array(),
+                    'content' => array(),
+                ),
+            ),
+        ));
+        $mondator->addExtension(new \Mandango\Mondator\Tests\Fixtures\Extension\Twig\MandangoTestsTwigExtension());
+
+        $containers = $mondator->generateContainers();
+        $article = $containers['Model\Article']->getDefinition('document');
+
+        // properties
+        $this->assertTrue($article->hasPropertyByName('publicProperty'));
+        $this->assertSame('public', $article->getPropertyByName('publicProperty')->getVisibility());
+
+        $this->assertTrue($article->hasPropertyByName('protectedProperty'));
+        $this->assertSame('protected', $article->getPropertyByName('protectedProperty')->getVisibility());
+
+        $this->assertTrue($article->hasPropertyByName('privateProperty'));
+        $this->assertSame('private', $article->getPropertyByName('privateProperty')->getVisibility());
+
+        $this->assertTrue($article->hasPropertyByName('staticProperty'));
+        $this->assertTrue($article->getPropertyByName('staticProperty')->getIsStatic());
+
+        // methods
+        $this->assertTrue($article->hasMethodByName('publicMethod'));
+        $this->assertSame('public', $article->getMethodbyName('publicMethod')->getVisibility());
+
+        $this->assertTrue($article->hasMethodByName('protectedMethod'));
+        $this->assertSame('protected', $article->getMethodbyName('protectedMethod')->getVisibility());
+
+        $this->assertTrue($article->hasMethodByName('privateMethod'));
+        $this->assertSame('private', $article->getMethodbyName('privateMethod')->getVisibility());
+
+        $this->assertTrue($article->hasMethodByName('methodWithPhpDoc'));
+        $this->assertSame(<<<EOF
+    /**
+     * phpDoc
+     */
+EOF
+        , $article->getMethodbyName('methodWithPhpDoc')->getDocComment());
+
+        $this->assertTrue($article->hasMethodByName('methodWithArguments'));
+        $this->assertSame('$name, $value', $article->getMethodbyName('methodWithArguments')->getArguments());
+
+        $this->assertTrue($article->hasMethodByName('methodWithCode'));
+        $this->assertTrue($article->hasMethodByName('methodWithCode'));
+        $this->assertSame(<<<EOF
+        return null;
+EOF
+        , $article->getMethodbyName('methodWithCode')->getCode());
+
+        $this->assertTrue($article->hasMethodByName('staticMethod'));
+        $this->assertTrue($article->getMethodByName('staticMethod')->getIsStatic());
     }
 }

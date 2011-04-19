@@ -10,4 +10,7 @@ $loader->registerNamespaces(array(
     'Mandango\Mondator'       => __DIR__.'/../src',
     'Mandango\Mondator\Tests' => __DIR__,
 ));
+$loader->registerPrefixes(array(
+    'Twig_' => __DIR__.'/../vendor/twig/lib',
+));
 $loader->register();
