@@ -61,20 +61,20 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($interfaces, $definition->getInterfaces());
     }
 
-    public function testIsFinal()
+    public function testFinal()
     {
         $definition = new Definition('Class1');
-        $this->assertFalse($definition->getIsFinal());
-        $definition->setIsFinal(true);
-        $this->assertTrue($definition->getIsFinal());
+        $this->assertFalse($definition->isFinal());
+        $definition->setFinal(true);
+        $this->assertTrue($definition->isFinal());
     }
 
-    public function testIsAbstract()
+    public function testAbstract()
     {
         $definition = new Definition('Class1');
-        $this->assertFalse($definition->getIsAbstract());
-        $definition->setIsAbstract(true);
-        $this->assertTrue($definition->getIsAbstract());
+        $this->assertFalse($definition->isAbstract());
+        $definition->setAbstract(true);
+        $this->assertTrue($definition->isAbstract());
     }
 
     public function testProperties()

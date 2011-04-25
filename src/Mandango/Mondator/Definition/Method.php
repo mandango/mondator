@@ -24,9 +24,9 @@ class Method
     private $name;
     private $arguments;
     private $code;
-    private $isFinal;
-    private $isStatic;
-    private $isAbstract;
+    private $final;
+    private $static;
+    private $abstract;
     private $docComment;
 
     /**
@@ -45,9 +45,9 @@ class Method
         $this->setName($name);
         $this->setArguments($arguments);
         $this->setCode($code);
-        $this->isFinal = false;
-        $this->isStatic = false;
-        $this->isAbstract = false;
+        $this->final = false;
+        $this->static = false;
+        $this->abstract = false;
     }
 
     /**
@@ -149,13 +149,13 @@ class Method
     /**
      * Set if the method is final.
      *
-     * @param bool $isFinal If the method is final.
+     * @param bool $final If the method is final.
      *
      * @api
      */
-    public function setIsFinal($isFinal)
+    public function setFinal($final)
     {
-        $this->isFinal = (bool) $isFinal;
+        $this->final = (bool) $final;
     }
 
     /**
@@ -165,21 +165,21 @@ class Method
      *
      * @api
      */
-    public function getIsFinal()
+    public function isFinal()
     {
-        return $this->isFinal;
+        return $this->final;
     }
 
     /**
      * Set if the method is static.
      *
-     * @param bool $isStatic If the method is static.
+     * @param bool $static If the method is static.
      *
      * @api
      */
-    public function setIsStatic($isStatic)
+    public function setStatic($static)
     {
-        $this->isStatic = (bool) $isStatic;
+        $this->static = (bool) $static;
     }
 
     /**
@@ -189,21 +189,21 @@ class Method
      *
      * @api
      */
-    public function getIsStatic()
+    public function isStatic()
     {
-        return $this->isStatic;
+        return $this->static;
     }
 
     /**
      * Set if the method is abstract.
      *
-     * @param bool $isAbstract If the method is abstract.
+     * @param bool $abstract If the method is abstract.
      *
      * @api
      */
-    public function setIsAbstract($isAbstract)
+    public function setAbstract($abstract)
     {
-        $this->isAbstract = (bool) $isAbstract;
+        $this->abstract = (bool) $abstract;
     }
 
     /**
@@ -213,9 +213,9 @@ class Method
      *
      * @api
      */
-    public function getIsAbstract()
+    public function isAbstract()
     {
-        return $this->isAbstract;
+        return $this->abstract;
     }
 
     /**

@@ -142,7 +142,7 @@ EOF;
         $declaration = '';
 
         // abstract
-        if ($this->definition->getIsAbstract()) {
+        if ($this->definition->isAbstract()) {
             $declaration .= 'abstract ';
         }
 
@@ -178,7 +178,7 @@ EOF;
             if ($docComment = $property->getDocComment()) {
                 $code .= $docComment."\n";
             }
-            $isStatic = $property->getIsStatic() ? 'static ' : '';
+            $isStatic = $property->isStatic() ? 'static ' : '';
 
             $value = $property->getValue();
             if (null === $value) {
@@ -213,13 +213,13 @@ EOF;
             }
 
             // isFinal
-            $isFinal = $method->getIsFinal() ? 'final ' : '';
+            $isFinal = $method->isFinal() ? 'final ' : '';
 
             // isStatic
-            $isStatic = $method->getIsStatic() ? 'static ' : '';
+            $isStatic = $method->isStatic() ? 'static ' : '';
 
             // abstract
-            if ($method->getIsAbstract()) {
+            if ($method->isAbstract()) {
                 $code .= <<<EOF
     abstract $isStatic{$method->getVisibility()} function {$method->getName()}({$method->getArguments()});
 EOF;

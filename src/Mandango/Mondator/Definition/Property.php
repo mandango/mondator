@@ -23,7 +23,7 @@ class Property
     private $visibility;
     private $name;
     private $value;
-    private $isStatic = false;
+    private $static;
     private $docComment;
 
     /**
@@ -40,7 +40,7 @@ class Property
         $this->setVisibility($visibility);
         $this->setName($name);
         $this->setValue($value);
-        $this->isStatic = false;
+        $this->static = false;
     }
 
     /**
@@ -118,19 +118,13 @@ class Property
     /**
      * Set if the property is static.
      *
-     * @param bool $isStatic If the property is static.
-     *
-     * @throws \InvalidArgumentException If the $isStatic is not a boolean.
+     * @param bool $static If the property is static.
      *
      * @api
      */
-    public function setIsStatic($isStatic)
+    public function setStatic($static)
     {
-        if (!is_bool($isStatic)) {
-            throw new \InvalidArgumentException('The $isStatic is not a boolean.');
-        }
-
-        $this->isStatic = $isStatic;
+        $this->static = (bool) $static;
     }
 
     /**
@@ -140,9 +134,9 @@ class Property
      *
      * @api
      */
-    public function getIsStatic()
+    public function isStatic()
     {
-        return $this->isStatic;
+        return $this->static;
     }
 
     /**

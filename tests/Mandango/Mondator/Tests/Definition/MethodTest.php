@@ -57,31 +57,31 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('$this->visibility = $v;', $method->getCode());
     }
 
-    public function testIsFinal()
+    public function testFinal()
     {
         $method = new Method('public', 'setVisibility', '$visibility', '$this->visibility = $visibility;');
 
-        $this->assertFalse($method->getIsFinal());
-        $method->setIsFinal(true);
-        $this->assertTrue($method->getIsFinal());
+        $this->assertFalse($method->isFinal());
+        $method->setFinal(true);
+        $this->assertTrue($method->isFinal());
     }
 
-    public function testIsStatic()
+    public function testStatic()
     {
         $method = new Method('public', 'setVisibility', '$visibility', '$this->visibility = $visibility;');
 
-        $this->assertFalse($method->getIsStatic());
-        $method->setIsStatic(true);
-        $this->assertTrue($method->getIsStatic());
+        $this->assertFalse($method->isStatic());
+        $method->setStatic(true);
+        $this->assertTrue($method->isStatic());
     }
 
-    public function testIsAbstract()
+    public function testAbstract()
     {
         $method = new Method('public', 'setVisibility', '$visibility', '$this->visibility = $visibility;');
 
-        $this->assertFalse($method->getIsAbstract());
-        $method->setIsAbstract(true);
-        $this->assertTrue($method->getIsAbstract());
+        $this->assertFalse($method->isAbstract());
+        $method->setAbstract(true);
+        $this->assertTrue($method->isAbstract());
     }
 
     public function testDocComment()

@@ -23,8 +23,8 @@ class Definition
     private $class;
     private $parentClass;
     private $interfaces;
-    private $isFinal;
-    private $isAbstract;
+    private $final;
+    private $abstract;
     private $properties;
     private $methods;
     private $docComment;
@@ -40,8 +40,8 @@ class Definition
     {
         $this->setClass($class);
         $this->interfaces = array();
-        $this->isFinal = false;
-        $this->isAbstract = false;
+        $this->final = false;
+        $this->abstract = false;
         $this->properties = array();
         $this->methods = array();
     }
@@ -168,13 +168,13 @@ class Definition
     /**
      * Set if the class is final.
      *
-     * @param bool $isFinal If the class is final.
+     * @param bool $final If the class is final.
      *
      * @api
      */
-    public function setIsFinal($isFinal)
+    public function setFinal($final)
     {
-        $this->isFinal = (bool) $isFinal;
+        $this->final = (bool) $final;
     }
 
     /**
@@ -184,21 +184,21 @@ class Definition
      *
      * @api
      */
-    public function getIsFinal()
+    public function isFinal()
     {
-        return $this->isFinal;
+        return $this->final;
     }
 
     /**
      * Set if the class is abstract.
      *
-     * @param bool $isAbstract If the class is abstract.
+     * @param bool $abstract If the class is abstract.
      *
      * @api
      */
-    public function setIsAbstract($isAbstract)
+    public function setAbstract($abstract)
     {
-        $this->isAbstract = (bool) $isAbstract;
+        $this->abstract = (bool) $abstract;
     }
 
     /**
@@ -208,9 +208,9 @@ class Definition
      *
      * @api
      */
-    public function getIsAbstract()
+    public function isAbstract()
     {
-        return $this->isAbstract;
+        return $this->abstract;
     }
 
     /**
