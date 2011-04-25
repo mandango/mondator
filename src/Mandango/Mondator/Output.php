@@ -18,8 +18,8 @@ namespace Mandango\Mondator;
  */
 class Output
 {
-    protected $dir;
-    protected $override;
+    private $dir;
+    private $override;
 
     /**
      * Constructor.

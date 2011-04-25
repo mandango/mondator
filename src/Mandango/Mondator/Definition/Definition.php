@@ -18,14 +18,14 @@ namespace Mandango\Mondator\Definition;
  */
 class Definition
 {
-    protected $class;
-    protected $parentClass;
-    protected $interfaces = array();
-    protected $isFinal = false;
-    protected $isAbstract = false;
-    protected $properties = array();
-    protected $methods = array();
-    protected $docComment;
+    private $class;
+    private $parentClass;
+    private $interfaces;
+    private $isFinal;
+    private $isAbstract;
+    private $properties;
+    private $methods;
+    private $docComment;
 
     /**
      * Constructor.
@@ -35,6 +35,11 @@ class Definition
     public function __construct($class)
     {
         $this->setClass($class);
+        $this->interfaces = array();
+        $this->isFinal = false;
+        $this->isAbstract = false;
+        $this->properties = array();
+        $this->methods = array();
     }
 
     /**

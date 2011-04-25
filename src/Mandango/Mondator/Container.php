@@ -18,7 +18,15 @@ namespace Mandango\Mondator;
  */
 class Container implements \ArrayAccess, \Countable, \IteratorAggregate
 {
-    protected $definitions = array();
+    private $definitions;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->definitions = array();
+    }
 
     /**
      * Returns if a definition name exists.

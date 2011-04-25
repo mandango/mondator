@@ -20,7 +20,7 @@ use Mandango\Mondator\Definition\Definition as BaseDefinition;
  */
 class Definition extends BaseDefinition
 {
-    protected $output;
+    private $output;
 
     /**
      * Constructor.

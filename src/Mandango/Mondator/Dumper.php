@@ -20,7 +20,7 @@ use Mandango\Mondator\Definition\Definition as BaseDefinition;
  */
 class Dumper
 {
-    protected $definition;
+    private $definition;
 
     /**
      * Constructor.
@@ -96,7 +96,7 @@ class Dumper
         return sprintf("array(\n%s\n%s)", implode("\n", $code), str_repeat(' ', $indent - 4));
     }
 
-    protected function startFile()
+    private function startFile()
     {
         return <<<EOF
 <?php
@@ -104,7 +104,7 @@ class Dumper
 EOF;
     }
 
-    protected function addNamespace()
+    private function addNamespace()
     {
         if (!$namespace = $this->definition->getNamespace()) {
             return '';
@@ -117,7 +117,7 @@ namespace $namespace;
 EOF;
     }
 
-    protected function startClass()
+    private function startClass()
     {
         $code = "\n";
 
@@ -157,7 +157,7 @@ EOF;
         return $code;
     }
 
-    protected function addProperties()
+    private function addProperties()
     {
         $code = '';
 
@@ -190,7 +190,7 @@ EOF;
         return $code;
     }
 
-    protected function addMethods()
+    private function addMethods()
     {
         $code = '';
 
@@ -231,7 +231,7 @@ EOF;
         return $code;
     }
 
-    protected function endClass()
+    private function endClass()
     {
         $code = '';
 

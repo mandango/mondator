@@ -18,9 +18,19 @@ namespace Mandango\Mondator;
  */
 class Mondator
 {
-    protected $configClasses = array();
-    protected $extensions = array();
-    protected $outputs = array();
+    private $configClasses;
+    private $extensions;
+    private $outputs;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->configClasses = array();
+        $this->extensions = array();
+        $this->options = array();
+    }
 
     /**
      * Set a config class.

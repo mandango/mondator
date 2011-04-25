@@ -18,8 +18,8 @@ namespace Mandango\Mondator;
  */
 abstract class ClassExtension
 {
-    protected $options         = array();
-    protected $requiredOptions = array();
+    private $options;
+    private $requiredOptions;
 
     protected $definitions;
 
@@ -37,6 +37,9 @@ abstract class ClassExtension
      */
     public function __construct(array $options = array())
     {
+        $this->options = array();
+        $this->requiredOptions = array();
+
         $this->setUp();
 
         foreach ($options as $name => $value) {

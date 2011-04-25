@@ -18,11 +18,11 @@ namespace Mandango\Mondator\Definition;
  */
 class Property
 {
-    protected $visibility;
-    protected $name;
-    protected $value;
-    protected $isStatic = false;
-    protected $docComment;
+    private $visibility;
+    private $name;
+    private $value;
+    private $isStatic = false;
+    private $docComment;
 
     /**
      * Constructor.
@@ -36,6 +36,7 @@ class Property
         $this->setVisibility($visibility);
         $this->setName($name);
         $this->setValue($value);
+        $this->isStatic = false;
     }
 
     /**

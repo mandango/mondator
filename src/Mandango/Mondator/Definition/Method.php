@@ -18,14 +18,14 @@ namespace Mandango\Mondator\Definition;
  */
 class Method
 {
-    protected $visibility;
-    protected $name;
-    protected $arguments;
-    protected $code;
-    protected $isFinal = false;
-    protected $isStatic = false;
-    protected $isAbstract = false;
-    protected $docComment;
+    private $visibility;
+    private $name;
+    private $arguments;
+    private $code;
+    private $isFinal;
+    private $isStatic;
+    private $isAbstract;
+    private $docComment;
 
     /**
      * Constructor.
@@ -41,6 +41,9 @@ class Method
         $this->setName($name);
         $this->setArguments($arguments);
         $this->setCode($code);
+        $this->isFinal = false;
+        $this->isStatic = false;
+        $this->isAbstract = false;
     }
 
     /**
