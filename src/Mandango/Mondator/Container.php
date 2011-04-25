@@ -15,6 +15,8 @@ namespace Mandango\Mondator;
  * Container of definitions.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Container implements \ArrayAccess, \Countable, \IteratorAggregate
 {
@@ -22,6 +24,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
 
     /**
      * Constructor.
+     *
+     * @api
      */
     public function __construct()
     {
@@ -34,6 +38,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param string $name The definition name.
      *
      * @return bool Returns if the definition name exists.
+     *
+     * @api
      */
     public function hasDefinition($name)
     {
@@ -45,6 +51,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param string                       $name       The definition name.
      * @param Mandango\Mondator\Definition $definition The definition.
+     *
+     * @api
      */
     public function setDefinition($name, Definition $definition)
     {
@@ -55,6 +63,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      * Set the definitions.
      *
      * @param array $definitions An array of definitions.
+     *
+     * @api
      */
     public function setDefinitions(array $definitions)
     {
@@ -72,6 +82,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      * @return Mandango\Mondator\Definition The definition.
      *
      * @throws \InvalidArgumentException If the definition does not exists.
+     *
+     * @api
      */
     public function getDefinition($name)
     {
@@ -86,6 +98,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      * Returns the definitions.
      *
      * @return arary The definitions.
+     *
+     * @api
      */
     public function getDefinitions()
     {
@@ -98,6 +112,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param string $name The definition name
      *
      * @throws \InvalidArgumentException If the definition does not exists.
+     *
+     * @api
      */
     public function removeDefinition($name)
     {
@@ -110,6 +126,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
 
     /**
      * Clear the definitions.
+     *
+     * @api
      */
     public function clearDefinitions()
     {
@@ -143,6 +161,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      * Returns the number of definitions (implements the \Countable interface).
      *
      * @return integer The number of definitions.
+     *
+     * @api
      */
     public function count()
     {
@@ -153,6 +173,8 @@ class Container implements \ArrayAccess, \Countable, \IteratorAggregate
      * Returns an \ArrayIterator with the definitions (implements \IteratorAggregate interface).
      *
      * @return \ArrayIterator An \ArrayIterator with the definitions.
+     *
+     * @api
      */
     public function getIterator()
     {

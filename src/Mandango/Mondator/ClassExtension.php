@@ -15,6 +15,8 @@ namespace Mandango\Mondator;
  * ClassExtension is the base class for class extensions.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 abstract class ClassExtension
 {
@@ -34,6 +36,8 @@ abstract class ClassExtension
      * Constructor.
      *
      * @param array $options An array of options.
+     *
+     * @api
      */
     public function __construct(array $options = array())
     {
@@ -54,6 +58,8 @@ abstract class ClassExtension
 
     /**
      * Set up the extension.
+     *
+     * @api
      */
     protected function setUp()
     {
@@ -64,6 +70,8 @@ abstract class ClassExtension
      *
      * @param string $name         The option name.
      * @param mixed  $defaultValue The default value (optional, null by default).
+     *
+     * @api
      */
     protected function addOption($name, $defaultValue = null)
     {
@@ -74,6 +82,8 @@ abstract class ClassExtension
      * Add options.
      *
      * @param array $options An array with options (name as key and default value as value).
+     *
+     * @api
      */
     protected function addOptions(array $options)
     {
@@ -86,6 +96,8 @@ abstract class ClassExtension
      * Add a required option.
      *
      * @param string $name The option name.
+     *
+     * @api
      */
     protected function addRequiredOption($name)
     {
@@ -98,6 +110,8 @@ abstract class ClassExtension
      * Add required options.
      *
      * @param array $options An array with the name of the required option as value.
+     *
+     * @api
      */
     protected function addRequiredOptions(array $options)
     {
@@ -112,6 +126,8 @@ abstract class ClassExtension
      * @param string $name The name.
      *
      * @return bool Returns true if the option exists, false otherwise.
+     *
+     * @api
      */
     public function hasOption($name)
     {
@@ -125,6 +141,8 @@ abstract class ClassExtension
      * @param mixed  $value The value.
      *
      * @throws \InvalidArgumentException If the option does not exists.
+     *
+     * @api
      */
     public function setOption($name, $value)
     {
@@ -139,6 +157,8 @@ abstract class ClassExtension
      * Returns the options.
      *
      * @return array The options.
+     *
+     * @api
      */
     public function getOptions()
     {
@@ -153,6 +173,8 @@ abstract class ClassExtension
      * @return mixed The value of the option.
      *
      * @throws \InvalidArgumentException If the options does not exists.
+     *
+     * @api
      */
     public function getOption($name)
     {
@@ -169,6 +191,8 @@ abstract class ClassExtension
      * @param string       $class              The class.
      * @param \ArrayObject $configClasses      The config classes.
      * @param \ArrayObject $newClassExtensions The new class extensions.
+     *
+     * @api
      */
     public function newClassExtensionsProcess($class, \ArrayObject $configClasses, \ArrayObject $newClassExtensions)
     {
@@ -189,6 +213,8 @@ abstract class ClassExtension
      * Do the new class extensions process.
      *
      * Here you can add new class extensions.
+     *
+     * @api
      */
     protected function doNewClassExtensionsProcess()
     {
@@ -200,6 +226,8 @@ abstract class ClassExtension
      * @param string       $class            The class.
      * @param \ArrayObject $configClasses    The config classes.
      * @param \ArrayObject $newConfigClasses The new config classes.
+     *
+     * @api
      */
     public function newConfigClassesProcess($class, \ArrayObject $configClasses, \ArrayObject $newConfigClasses)
     {
@@ -221,6 +249,8 @@ abstract class ClassExtension
      *
      * Here you can add new config classes, and change the config classes
      * if it is necessary to build the new config classes.
+     *
+     * @api
      */
     protected function doNewConfigClassesProcess()
     {
@@ -231,6 +261,8 @@ abstract class ClassExtension
      *
      * @param string       $class         The class.
      * @param \ArrayObject $configClasses The config classes.
+     *
+     * @api
      */
     public function configClassProcess($class, \ArrayObject $configClasses)
     {
@@ -249,6 +281,8 @@ abstract class ClassExtension
      * Do the config class process.
      *
      * Here you can modify the config class.
+     *
+     * @api
      */
     protected function doConfigClassProcess()
     {
@@ -261,6 +295,8 @@ abstract class ClassExtension
      * @param string                      $class         The class.
      * @param \ArrayObject                $configClasses The config classes.
      * @param Mandango\Mondator\Container $container     The container.
+     *
+     * @api
      */
     public function classProcess($class, \ArrayObject $configClasses, Container $container)
     {
@@ -279,6 +315,8 @@ abstract class ClassExtension
 
     /**
      * Do the class process.
+     *
+     * @api
      */
     protected function doClassProcess()
     {

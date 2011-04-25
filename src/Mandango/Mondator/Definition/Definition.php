@@ -15,6 +15,8 @@ namespace Mandango\Mondator\Definition;
  * Represents a definition of a class.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Definition
 {
@@ -31,6 +33,8 @@ class Definition
      * Constructor.
      *
      * @param string $class The class.
+     *
+     * @api
      */
     public function __construct($class)
     {
@@ -46,6 +50,8 @@ class Definition
      * Set the class.
      *
      * @param string $class The class.
+     *
+     * @api
      */
     public function setClass($class)
     {
@@ -56,6 +62,8 @@ class Definition
      * Returns the class.
      *
      * @return string The class.
+     *
+     * @api
      */
     public function getClass()
     {
@@ -66,6 +74,8 @@ class Definition
      * Returns the namespace.
      *
      * @return string|null The namespace.
+     *
+     * @api
      */
     public function getNamespace()
     {
@@ -80,6 +90,8 @@ class Definition
      * Returns the class name.
      *
      * @return string|null The class name.
+     *
+     * @api
      */
     public function getClassName()
     {
@@ -94,6 +106,8 @@ class Definition
      * Set the parent class.
      *
      * @param string $parentClass The parent class.
+     *
+     * @api
      */
     public function setParentClass($parentClass)
     {
@@ -104,6 +118,8 @@ class Definition
      * Returns the parent class.
      *
      * @return string The parent class.
+     *
+     * @api
      */
     public function getParentClass()
     {
@@ -114,6 +130,8 @@ class Definition
      * Add an interface.
      *
      * @param string $interface The interface.
+     *
+     * @api
      */
     public function addInterface($interface)
     {
@@ -124,6 +142,8 @@ class Definition
      * Set the interfaces.
      *
      * @param array $interfaces The interfaces.
+     *
+     * @api
      */
     public function setInterfaces(array $interfaces)
     {
@@ -137,6 +157,8 @@ class Definition
      * Returns the interfaces.
      *
      * @return array The interfaces.
+     *
+     * @api
      */
     public function getInterfaces()
     {
@@ -147,6 +169,8 @@ class Definition
      * Set if the class is final.
      *
      * @param bool $isFinal If the class is final.
+     *
+     * @api
      */
     public function setIsFinal($isFinal)
     {
@@ -157,6 +181,8 @@ class Definition
      * Returns if the class is final.
      *
      * @return bool Returns if the class is final.
+     *
+     * @api
      */
     public function getIsFinal()
     {
@@ -167,6 +193,8 @@ class Definition
      * Set if the class is abstract.
      *
      * @param bool $isAbstract If the class is abstract.
+     *
+     * @api
      */
     public function setIsAbstract($isAbstract)
     {
@@ -177,6 +205,8 @@ class Definition
      * Returns if the class is abstract.
      *
      * @return bool If the class is abstract.
+     *
+     * @api
      */
     public function getIsAbstract()
     {
@@ -187,6 +217,8 @@ class Definition
      * Add a property.
      *
      * @param Mandango\Mondator\Definition\Property $property The property.
+     *
+     * @api
      */
     public function addProperty(Property $property)
     {
@@ -197,6 +229,8 @@ class Definition
      * Set the properties.
      *
      * @param array $properties An array of properties.
+     *
+     * @api
      */
     public function setProperties(array $properties)
     {
@@ -210,6 +244,8 @@ class Definition
      * Returns the properties.
      *
      * @return array The properties.
+     *
+     * @api
      */
     public function getProperties()
     {
@@ -222,6 +258,8 @@ class Definition
      * @param string $name The property name.
      *
      * @return bool If the property exists.
+     *
+     * @api
      */
     public function hasPropertyByName($name)
     {
@@ -242,6 +280,8 @@ class Definition
      * @return Mandango\Mondator\Definition\Property The property.
      *
      * @throws \InvalidArgumentException If the property does not exists.
+     *
+     * @api
      */
     public function getPropertyByName($name)
     {
@@ -260,6 +300,8 @@ class Definition
      * @param string $name The property name.
      *
      * @throws \InvalidArgumentException If the property does not exists.
+     *
+     * @api
      */
     public function removePropertyByName($name)
     {
@@ -277,6 +319,8 @@ class Definition
      * Add a method.
      *
      * @param Mandango\Mondator\Definition\Method $method The method.
+     *
+     * @api
      */
     public function addMethod(Method $method)
     {
@@ -287,6 +331,8 @@ class Definition
      * Set the methods.
      *
      * @param array $methods An array of methods.
+     *
+     * @api
      */
     public function setMethods(array $methods)
     {
@@ -300,6 +346,8 @@ class Definition
      * Returns the methods.
      *
      * @return array The methods.
+     *
+     * @api
      */
     public function getMethods()
     {
@@ -312,6 +360,8 @@ class Definition
      * @param string $name The method name.
      *
      * @return bool If the method exists.
+     *
+     * @api
      */
     public function hasMethodByName($name)
     {
@@ -332,6 +382,8 @@ class Definition
      * @return Mandango\Mondator\Definition\Method The method.
      *
      * @throws \InvalidArgumentException If the method does not exists.
+     *
+     * @api
      */
     public function getMethodByName($name)
     {
@@ -350,6 +402,8 @@ class Definition
      * @param string $name The method name.
      *
      * @throws \InvalidArgumentException If the method does not exists.
+     *
+     * @api
      */
     public function removeMethodByName($name)
     {
@@ -367,6 +421,8 @@ class Definition
      * Set the doc comment.
      *
      * @param string|null $docComment The doc comment.
+     *
+     * @api
      */
     public function setDocComment($docComment)
     {
@@ -377,6 +433,8 @@ class Definition
      * Returns the doc comment.
      *
      * @return string|null The doc comment.
+     *
+     * @api
      */
     public function getDocComment()
     {

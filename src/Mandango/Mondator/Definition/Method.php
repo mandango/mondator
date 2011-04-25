@@ -15,6 +15,8 @@ namespace Mandango\Mondator\Definition;
  * Represents a method of a class.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Method
 {
@@ -34,6 +36,8 @@ class Method
      * @param string $name       The name.
      * @param string $arguments  The arguments (as string).
      * @param string $code       The code.
+     *
+     * @api
      */
     public function __construct($visibility, $name, $arguments, $code)
     {
@@ -50,6 +54,8 @@ class Method
      * Set the visibility.
      *
      * @param string $visibility The visibility.
+     *
+     * @api
      */
     public function setVisibility($visibility)
     {
@@ -60,6 +66,8 @@ class Method
      * Returns the visibility.
      *
      * @return string The visibility.
+     *
+     * @api
      */
     public function getVisibility()
     {
@@ -70,6 +78,8 @@ class Method
      * Set the name.
      *
      * @param string $name The name.
+     *
+     * @api
      */
     public function setName($name)
     {
@@ -80,6 +90,8 @@ class Method
      * Returns the name.
      *
      * @return string The name.
+     *
+     * @api
      */
     public function getName()
     {
@@ -92,6 +104,8 @@ class Method
      * Example: "$argument1, &$argument2"
      *
      * @param string $arguments The arguments (as string).
+     *
+     * @api
      */
     public function setArguments($arguments)
     {
@@ -100,6 +114,8 @@ class Method
 
     /**
      * Returns the arguments.
+     *
+     * @api
      */
     public function getArguments()
     {
@@ -110,6 +126,8 @@ class Method
      * Set the code.
      *
      * @param string $code.
+     *
+     * @api
      */
     public function setCode($code)
     {
@@ -120,6 +138,8 @@ class Method
      * Returns the code.
      *
      * @return string The code.
+     *
+     * @api
      */
     public function getCode()
     {
@@ -130,6 +150,8 @@ class Method
      * Set if the method is final.
      *
      * @param bool $isFinal If the method is final.
+     *
+     * @api
      */
     public function setIsFinal($isFinal)
     {
@@ -140,6 +162,8 @@ class Method
      * Returns if the method is final.
      *
      * @return bool If the method is final.
+     *
+     * @api
      */
     public function getIsFinal()
     {
@@ -150,6 +174,8 @@ class Method
      * Set if the method is static.
      *
      * @param bool $isStatic If the method is static.
+     *
+     * @api
      */
     public function setIsStatic($isStatic)
     {
@@ -160,6 +186,8 @@ class Method
      * Return if the method is static.
      *
      * @return bool Returns if the method is static.
+     *
+     * @api
      */
     public function getIsStatic()
     {
@@ -170,6 +198,8 @@ class Method
      * Set if the method is abstract.
      *
      * @param bool $isAbstract If the method is abstract.
+     *
+     * @api
      */
     public function setIsAbstract($isAbstract)
     {
@@ -180,6 +210,8 @@ class Method
      * Return if the method is abstract.
      *
      * @return bool Returns if the method is abstract.
+     *
+     * @api
      */
     public function getIsAbstract()
     {
@@ -190,6 +222,8 @@ class Method
      * Set the doc comment.
      *
      * @param string|null $docComment The doc comment.
+     *
+     * @api
      */
     public function setDocComment($docComment)
     {
@@ -200,6 +234,8 @@ class Method
      * Returns the doc comment.
      *
      * @return string|null The doc comment.
+     *
+     * @api
      */
     public function getDocComment()
     {

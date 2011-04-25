@@ -17,6 +17,8 @@ use Mandango\Mondator\Definition\Definition as BaseDefinition;
  * Definitions to save with the extensions. Allows save the output.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Definition extends BaseDefinition
 {
@@ -27,6 +29,8 @@ class Definition extends BaseDefinition
      *
      * @param string                   $class  The class.
      * @param Mandango\Mondator\Output $output The output.
+     *
+     * @api
      */
     public function __construct($class, Output $output)
     {
@@ -39,6 +43,8 @@ class Definition extends BaseDefinition
      * Set the output.
      *
      * @param Mandango\Mondator\Output $output The output.
+     *
+     * @api
      */
     public function setOutput(Output $output)
     {
@@ -49,6 +55,8 @@ class Definition extends BaseDefinition
      * Returns the output.
      *
      * @return Mandango\Mondator\Output The output.
+     *
+     * @api
      */
     public function getOutput()
     {

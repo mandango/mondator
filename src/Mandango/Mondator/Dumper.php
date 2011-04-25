@@ -17,6 +17,8 @@ use Mandango\Mondator\Definition\Definition as BaseDefinition;
  * The Mondator Dumper.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Dumper
 {
@@ -26,6 +28,8 @@ class Dumper
      * Constructor.
      *
      * @param Mandango\Mondator\Definition\Definition $definition The definition.
+     *
+     * @api
      */
     public function __construct(BaseDefinition $definition)
     {
@@ -36,6 +40,8 @@ class Dumper
      * Set the definition.
      *
      * @param Mandango\Mondator\Definition\Definition $definition The definition.
+     *
+     * @api
      */
     public function setDefinition(BaseDefinition $definition)
     {
@@ -46,6 +52,8 @@ class Dumper
      * Returns the definition
      *
      * @return Mandango\Mondator\Definition\Definition The definition.
+     *
+     * @api
      */
     public function getDefinition()
     {
@@ -56,6 +64,8 @@ class Dumper
      * Dump the definition.
      *
      * @return string The PHP code of the definition.
+     *
+     * @api
      */
     public function dump()
     {

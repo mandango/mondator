@@ -15,6 +15,8 @@ namespace Mandango\Mondator;
  * Extension is the base class for extensions.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 abstract class Extension extends ClassExtension
 {
@@ -23,6 +25,8 @@ abstract class Extension extends ClassExtension
      *
      * @param \ArrayObject                $configClasses The config classes.
      * @param Mandango\Mondator\Container $container     The global container.
+     *
+     * @api
      */
     public function preGlobalProcess(\ArrayObject $configClasses, Container $container)
     {
@@ -37,6 +41,8 @@ abstract class Extension extends ClassExtension
 
     /**
      * Do the pre global process.
+     *
+     * @api
      */
     protected function doPreGlobalProcess()
     {
@@ -47,6 +53,8 @@ abstract class Extension extends ClassExtension
      *
      * @param \ArrayObject                $configClasses The config classes.
      * @param Mandango\Mondator\Container $container     The global container.
+     *
+     * @api
      */
     public function postGlobalProcess(\ArrayObject $configClasses, Container $container)
     {
@@ -61,6 +69,8 @@ abstract class Extension extends ClassExtension
 
     /**
      * Do the post global process.
+     *
+     * @api
      */
     protected function doPostGlobalProcess()
     {

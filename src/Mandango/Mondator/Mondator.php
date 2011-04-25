@@ -15,6 +15,8 @@ namespace Mandango\Mondator;
  * Mondator.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Mondator
 {
@@ -24,6 +26,8 @@ class Mondator
 
     /**
      * Constructor.
+     *
+     * @api
      */
     public function __construct()
     {
@@ -37,6 +41,8 @@ class Mondator
      *
      * @param string $class       The class.
      * @param array  $configClass The config class.
+     *
+     * @api
      */
     public function setConfigClass($class, array $configClass)
     {
@@ -47,6 +53,8 @@ class Mondator
      * Set the config classes.
      *
      * @param array $configClasses An array of config classes (class as key and config class as value).
+     *
+     * @api
      */
     public function setConfigClasses(array $configClasses)
     {
@@ -62,6 +70,8 @@ class Mondator
      * @param string $class The class.
      *
      * @return bool Returns if the config class exists.
+     *
+     * @api
      */
     public function hasConfigClass($class)
     {
@@ -72,6 +82,8 @@ class Mondator
      * Returns the config classes.
      *
      * @return array The config classes.
+     *
+     * @api
      */
     public function getConfigClasses()
     {
@@ -86,6 +98,8 @@ class Mondator
      * @return array The config class.
      *
      * @throws \InvalidArgumentException If the config class does not exists.
+     *
+     * @api
      */
     public function getConfigClass($class)
     {
@@ -100,6 +114,8 @@ class Mondator
      * Add a extension.
      *
      * @param Mandango\Mondator\Extension $extension The extension.
+     *
+     * @api
      */
     public function addExtension(Extension $extension)
     {
@@ -110,6 +126,8 @@ class Mondator
      * Set the extensions.
      *
      * @param array $extensions An array of extensions.
+     *
+     * @api
      */
     public function setExtensions(array $extensions)
     {
@@ -123,6 +141,8 @@ class Mondator
      * Returns the extensions.
      *
      * @return array The extensions.
+     *
+     * @api
      */
     public function getExtensions()
     {
@@ -133,6 +153,8 @@ class Mondator
      * Generate the containers.
      *
      * @return array The containers.
+     *
+     * @api
      */
     public function generateContainers()
     {
@@ -180,7 +202,7 @@ class Mondator
         return $containers;
     }
 
-    protected function generateContainersClassesExtensions($globalExtensions, $classesExtensions, $configClasses)
+    private function generateContainersClassesExtensions($globalExtensions, $classesExtensions, $configClasses)
     {
         foreach ($configClasses as $class => $configClass) {
             if (isset($classesExtensions[$class])) {
@@ -206,7 +228,7 @@ class Mondator
         }
     }
 
-    protected function generateContainersNewClassExtensions($class, $classExtensions, $configClasses, $extensions = null)
+    private function generateContainersNewClassExtensions($class, $classExtensions, $configClasses, $extensions = null)
     {
         if (null === $extensions) {
             $extensions = $classExtensions;
@@ -234,6 +256,8 @@ class Mondator
      * Dump containers.
      *
      * @param array $containers An array of containers.
+     *
+     * @api
      */
     public function dumpContainers(array $containers)
     {
@@ -277,6 +301,8 @@ class Mondator
 
     /**
      * Generate and dump the containers.
+     *
+     * @api
      */
     public function process()
     {
