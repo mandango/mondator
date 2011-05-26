@@ -15,14 +15,16 @@ namespace Mandango\Mondator\Definition;
  * Represents a property of a class.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Property
 {
-    protected $visibility;
-    protected $name;
-    protected $value;
-    protected $isStatic = false;
-    protected $docComment;
+    private $visibility;
+    private $name;
+    private $value;
+    private $static;
+    private $docComment;
 
     /**
      * Constructor.
@@ -30,18 +32,23 @@ class Property
      * @param string $visibility The visibility.
      * @param string $name       The name.
      * @param mixed  $value      The value.
+     *
+     * @api
      */
     public function __construct($visibility, $name, $value)
     {
         $this->setVisibility($visibility);
         $this->setName($name);
         $this->setValue($value);
+        $this->static = false;
     }
 
     /**
      * Set the visibility.
      *
      * @param string $visibility The visibility.
+     *
+     * @api
      */
     public function setVisibility($visibility)
     {
@@ -52,6 +59,8 @@ class Property
      * Returns the visibility.
      *
      * @return string The visibility.
+     *
+     * @api
      */
     public function getVisibility()
     {
@@ -62,6 +71,8 @@ class Property
      * Set the name.
      *
      * @param string $name The name.
+     *
+     * @api
      */
     public function setName($name)
     {
@@ -72,6 +83,8 @@ class Property
      * Returns the name.
      *
      * @return string The name.
+     *
+     * @api
      */
     public function getName()
     {
@@ -82,6 +95,8 @@ class Property
      * Set the value.
      *
      * @param mixed $value The value.
+     *
+     * @api
      */
     public function setValue($value)
     {
@@ -92,6 +107,8 @@ class Property
      * Returns the value.
      *
      * @return mixed The value.
+     *
+     * @api
      */
     public function getValue()
     {
@@ -101,33 +118,33 @@ class Property
     /**
      * Set if the property is static.
      *
-     * @param bool $isStatic If the property is static.
+     * @param bool $static If the property is static.
      *
-     * @throws \InvalidArgumentException If the $isStatic is not a boolean.
+     * @api
      */
-    public function setIsStatic($isStatic)
+    public function setStatic($static)
     {
-        if (!is_bool($isStatic)) {
-            throw new \InvalidArgumentException('The $isStatic is not a boolean.');
-        }
-
-        $this->isStatic = $isStatic;
+        $this->static = (bool) $static;
     }
 
     /**
      * Return if the property is static.
      *
      * @return bool Returns if the property is static.
+     *
+     * @api
      */
-    public function getIsStatic()
+    public function isStatic()
     {
-        return $this->isStatic;
+        return $this->static;
     }
 
     /**
      * Set the doc comment.
      *
      * @param string|null $docComment The doc comment.
+     *
+     * @api
      */
     public function setDocComment($docComment)
     {
@@ -138,6 +155,8 @@ class Property
      * Returns the doc comment.
      *
      * @return string|null The doc comment.
+     *
+     * @api
      */
     public function getDocComment()
     {

@@ -15,17 +15,19 @@ namespace Mandango\Mondator\Definition;
  * Represents a method of a class.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Method
 {
-    protected $visibility;
-    protected $name;
-    protected $arguments;
-    protected $code;
-    protected $isFinal = false;
-    protected $isStatic = false;
-    protected $isAbstract = false;
-    protected $docComment;
+    private $visibility;
+    private $name;
+    private $arguments;
+    private $code;
+    private $final;
+    private $static;
+    private $abstract;
+    private $docComment;
 
     /**
      * Constructor.
@@ -34,6 +36,8 @@ class Method
      * @param string $name       The name.
      * @param string $arguments  The arguments (as string).
      * @param string $code       The code.
+     *
+     * @api
      */
     public function __construct($visibility, $name, $arguments, $code)
     {
@@ -41,12 +45,17 @@ class Method
         $this->setName($name);
         $this->setArguments($arguments);
         $this->setCode($code);
+        $this->final = false;
+        $this->static = false;
+        $this->abstract = false;
     }
 
     /**
      * Set the visibility.
      *
      * @param string $visibility The visibility.
+     *
+     * @api
      */
     public function setVisibility($visibility)
     {
@@ -57,6 +66,8 @@ class Method
      * Returns the visibility.
      *
      * @return string The visibility.
+     *
+     * @api
      */
     public function getVisibility()
     {
@@ -67,6 +78,8 @@ class Method
      * Set the name.
      *
      * @param string $name The name.
+     *
+     * @api
      */
     public function setName($name)
     {
@@ -77,6 +90,8 @@ class Method
      * Returns the name.
      *
      * @return string The name.
+     *
+     * @api
      */
     public function getName()
     {
@@ -89,6 +104,8 @@ class Method
      * Example: "$argument1, &$argument2"
      *
      * @param string $arguments The arguments (as string).
+     *
+     * @api
      */
     public function setArguments($arguments)
     {
@@ -97,6 +114,8 @@ class Method
 
     /**
      * Returns the arguments.
+     *
+     * @api
      */
     public function getArguments()
     {
@@ -107,6 +126,8 @@ class Method
      * Set the code.
      *
      * @param string $code.
+     *
+     * @api
      */
     public function setCode($code)
     {
@@ -117,6 +138,8 @@ class Method
      * Returns the code.
      *
      * @return string The code.
+     *
+     * @api
      */
     public function getCode()
     {
@@ -126,67 +149,81 @@ class Method
     /**
      * Set if the method is final.
      *
-     * @param bool $isFinal If the method is final.
+     * @param bool $final If the method is final.
+     *
+     * @api
      */
-    public function setIsFinal($isFinal)
+    public function setFinal($final)
     {
-        $this->isFinal = (bool) $isFinal;
+        $this->final = (bool) $final;
     }
 
     /**
      * Returns if the method is final.
      *
      * @return bool If the method is final.
+     *
+     * @api
      */
-    public function getIsFinal()
+    public function isFinal()
     {
-        return $this->isFinal;
+        return $this->final;
     }
 
     /**
      * Set if the method is static.
      *
-     * @param bool $isStatic If the method is static.
+     * @param bool $static If the method is static.
+     *
+     * @api
      */
-    public function setIsStatic($isStatic)
+    public function setStatic($static)
     {
-        $this->isStatic = (bool) $isStatic;
+        $this->static = (bool) $static;
     }
 
     /**
      * Return if the method is static.
      *
      * @return bool Returns if the method is static.
+     *
+     * @api
      */
-    public function getIsStatic()
+    public function isStatic()
     {
-        return $this->isStatic;
+        return $this->static;
     }
 
     /**
      * Set if the method is abstract.
      *
-     * @param bool $isAbstract If the method is abstract.
+     * @param bool $abstract If the method is abstract.
+     *
+     * @api
      */
-    public function setIsAbstract($isAbstract)
+    public function setAbstract($abstract)
     {
-        $this->isAbstract = (bool) $isAbstract;
+        $this->abstract = (bool) $abstract;
     }
 
     /**
      * Return if the method is abstract.
      *
      * @return bool Returns if the method is abstract.
+     *
+     * @api
      */
-    public function getIsAbstract()
+    public function isAbstract()
     {
-        return $this->isAbstract;
+        return $this->abstract;
     }
 
     /**
      * Set the doc comment.
      *
      * @param string|null $docComment The doc comment.
+     *
+     * @api
      */
     public function setDocComment($docComment)
     {
@@ -197,6 +234,8 @@ class Method
      * Returns the doc comment.
      *
      * @return string|null The doc comment.
+     *
+     * @api
      */
     public function getDocComment()
     {

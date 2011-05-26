@@ -17,15 +17,19 @@ use Mandango\Mondator\Definition\Definition as BaseDefinition;
  * The Mondator Dumper.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Dumper
 {
-    protected $definition;
+    private $definition;
 
     /**
      * Constructor.
      *
      * @param Mandango\Mondator\Definition\Definition $definition The definition.
+     *
+     * @api
      */
     public function __construct(BaseDefinition $definition)
     {
@@ -36,6 +40,8 @@ class Dumper
      * Set the definition.
      *
      * @param Mandango\Mondator\Definition\Definition $definition The definition.
+     *
+     * @api
      */
     public function setDefinition(BaseDefinition $definition)
     {
@@ -46,6 +52,8 @@ class Dumper
      * Returns the definition
      *
      * @return Mandango\Mondator\Definition\Definition The definition.
+     *
+     * @api
      */
     public function getDefinition()
     {
@@ -56,6 +64,8 @@ class Dumper
      * Dump the definition.
      *
      * @return string The PHP code of the definition.
+     *
+     * @api
      */
     public function dump()
     {
@@ -96,7 +106,7 @@ class Dumper
         return sprintf("array(\n%s\n%s)", implode("\n", $code), str_repeat(' ', $indent - 4));
     }
 
-    protected function startFile()
+    private function startFile()
     {
         return <<<EOF
 <?php
@@ -104,7 +114,7 @@ class Dumper
 EOF;
     }
 
-    protected function addNamespace()
+    private function addNamespace()
     {
         if (!$namespace = $this->definition->getNamespace()) {
             return '';
@@ -117,7 +127,7 @@ namespace $namespace;
 EOF;
     }
 
-    protected function startClass()
+    private function startClass()
     {
         $code = "\n";
 
@@ -132,7 +142,7 @@ EOF;
         $declaration = '';
 
         // abstract
-        if ($this->definition->getIsAbstract()) {
+        if ($this->definition->isAbstract()) {
             $declaration .= 'abstract ';
         }
 
@@ -157,7 +167,7 @@ EOF;
         return $code;
     }
 
-    protected function addProperties()
+    private function addProperties()
     {
         $code = '';
 
@@ -168,7 +178,7 @@ EOF;
             if ($docComment = $property->getDocComment()) {
                 $code .= $docComment."\n";
             }
-            $isStatic = $property->getIsStatic() ? 'static ' : '';
+            $isStatic = $property->isStatic() ? 'static ' : '';
 
             $value = $property->getValue();
             if (null === $value) {
@@ -190,7 +200,7 @@ EOF;
         return $code;
     }
 
-    protected function addMethods()
+    private function addMethods()
     {
         $code = '';
 
@@ -203,13 +213,13 @@ EOF;
             }
 
             // isFinal
-            $isFinal = $method->getIsFinal() ? 'final ' : '';
+            $isFinal = $method->isFinal() ? 'final ' : '';
 
             // isStatic
-            $isStatic = $method->getIsStatic() ? 'static ' : '';
+            $isStatic = $method->isStatic() ? 'static ' : '';
 
             // abstract
-            if ($method->getIsAbstract()) {
+            if ($method->isAbstract()) {
                 $code .= <<<EOF
     abstract $isStatic{$method->getVisibility()} function {$method->getName()}({$method->getArguments()});
 EOF;
@@ -231,7 +241,7 @@ EOF;
         return $code;
     }
 
-    protected function endClass()
+    private function endClass()
     {
         $code = '';
 

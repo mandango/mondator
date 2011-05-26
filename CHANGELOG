@@ -1,0 +1,10 @@
+1.0.0 BETA2 - 18/5/2011
+-----------------------
+
+  * [e0bad9d] added README
+  * [2037709] changed some getters
+  * [61f979d] added @api phpdoc tag
+  * [ef3b967] changed some properties and methods to private
+  * [d758cda] changed license to MIT and files header
+  * [9c78b69] moved symfony class loader submodule
+  * [ca6812c] importing

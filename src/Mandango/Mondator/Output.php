@@ -15,17 +15,21 @@ namespace Mandango\Mondator;
  * Represents a output for a definition.
  *
  * @author Pablo Díez <pablodip@gmail.com>
+ *
+ * @api
  */
 class Output
 {
-    protected $dir;
-    protected $override;
+    private $dir;
+    private $override;
 
     /**
      * Constructor.
      *
      * @param string $dir      The dir.
      * @param bool   $override The override. It indicate if override files (optional, false by default).
+     *
+     * @api
      */
     public function __construct($dir, $override = false)
     {
@@ -37,6 +41,8 @@ class Output
      * Set the dir.
      *
      * @param $string $dir The dir.
+     *
+     * @api
      */
     public function setDir($dir)
     {
@@ -47,6 +53,8 @@ class Output
      * Returns the dir.
      *
      * @return string The dir.
+     *
+     * @api
      */
     public function getDir()
     {
@@ -57,6 +65,8 @@ class Output
      * Set the override. It indicate if override files.
      *
      * @param bool $override The override.
+     *
+     * @api
      */
     public function setOverride($override)
     {
@@ -67,6 +77,8 @@ class Output
      * Returns the override.
      *
      * @return bool The override.
+     *
+     * @api
      */
     public function getOverride()
     {

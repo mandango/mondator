@@ -48,22 +48,13 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('public;protected;private', $property->getValue());
     }
 
-    public function testIsStatic()
+    public function testStatic()
     {
         $property = new Property('protected', 'visibilities', array('public', 'protected'));
 
-        $this->assertFalse($property->getIsStatic());
-        $property->setIsStatic(true);
-        $this->assertTrue($property->getIsStatic());
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testSetIsStaticNotBoolean()
-    {
-        $property = new Property('protected', 'visibilities', array('public', 'protected'));
-        $property->setIsStatic(1);
+        $this->assertFalse($property->isStatic());
+        $property->setStatic(true);
+        $this->assertTrue($property->isStatic());
     }
 
     public function testDocComment()
