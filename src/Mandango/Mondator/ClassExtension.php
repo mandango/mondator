@@ -357,7 +357,7 @@ abstract class ClassExtension
         for ($i = 0; $i <= count($matches[0]) - 1; $i++) {
             $property = new Property($matches['visibility'][$i], $matches['name'][$i], null);
             if ($matches['static'][$i]) {
-                $property->setIsStatic(true);
+                $property->setStatic(true);
             }
             if ($matches['docComment'][$i]) {
                 $property->setDocComment($matches['docComment'][$i]);
@@ -386,7 +386,7 @@ abstract class ClassExtension
             $code = trim($matches['code'][$i], "\n");
             $method = new Method($matches['visibility'][$i], $matches['name'][$i], $matches['arguments'][$i], $code);
             if ($matches['static'][$i]) {
-                $method->setIsStatic(true);
+                $method->setStatic(true);
             }
             if ($matches['docComment'][$i]) {
                 $method->setDocComment($matches['docComment'][$i]);
