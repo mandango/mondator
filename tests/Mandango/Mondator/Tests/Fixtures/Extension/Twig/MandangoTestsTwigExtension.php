@@ -21,6 +21,6 @@ class MandangoTestsTwigExtension extends Extension
     {
         $this->definitions['document'] = new Definition($this->class, new Output(sys_get_temp_dir()));
 
-        $this->processTemplate($this->definitions['document'], 'defining.php');
+        $this->processTemplate($this->definitions['document'], file_get_contents(__DIR__.'/templates/defining.php'));
     }
 }

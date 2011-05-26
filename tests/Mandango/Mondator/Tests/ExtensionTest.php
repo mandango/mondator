@@ -154,6 +154,15 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($article->hasPropertyByName('staticProperty'));
         $this->assertTrue($article->getPropertyByName('staticProperty')->isStatic());
 
+        $this->assertTrue($article->hasPropertyByName('anotherPublicProperty'));
+        $this->assertSame('public', $article->getPropertyByName('anotherPublicProperty')->getVisibility());
+
+        $this->assertTrue($article->hasPropertyByName('anotherProtectedProperty'));
+        $this->assertSame('protected', $article->getPropertyByName('anotherProtectedProperty')->getVisibility());
+
+        $this->assertTrue($article->hasPropertyByName('anotherPrivateProperty'));
+        $this->assertSame('private', $article->getPropertyByName('anotherPrivateProperty')->getVisibility());
+
         // methods
         $this->assertTrue($article->hasMethodByName('publicMethod'));
         $this->assertSame('public', $article->getMethodbyName('publicMethod')->getVisibility());

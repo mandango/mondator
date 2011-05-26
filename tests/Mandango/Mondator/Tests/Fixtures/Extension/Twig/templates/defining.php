@@ -3,6 +3,14 @@
     private $privateProperty;
     static public $staticProperty;
 
+    public $anotherPublicProperty;
+
+    protected $anotherProtectedProperty;
+
+    private $anotherPrivateProperty;
+
+    static protected $anotherPublicProperty;
+
     public function publicMethod()
     {
     }

@@ -402,11 +402,7 @@ abstract class ClassExtension
                 throw new \RuntimeException('Twig is required to use templates.');
             }
 
-            $templateDirs = array();
-            $ref = new \ReflectionClass($this);
-            $templateDirs = dirname($ref->getFileName()).'/templates';
-
-            $loader = new \Twig_Loader_Filesystem($templateDirs);
+            $loader = new \Twig_Loader_String();
             $twig = new \Twig_Environment($loader, array(
                 'autoescape'       => false,
                 'strict_variables' => true,
