@@ -374,7 +374,7 @@ abstract class ClassExtension
             function
             \s
             (?P<name>[a-zA-Z0-9_]+)
-            \((?P<arguments>[$a-zA-Z0-9_\\=, ]*)\)
+            \((?P<arguments>[$a-zA-Z0-9_\\\=\(\), ]*)\)
             \n
             \ \ \ \ \{
                 (?P<code>[\s\S]*)

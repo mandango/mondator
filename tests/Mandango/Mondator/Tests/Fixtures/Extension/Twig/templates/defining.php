@@ -1,3 +1,5 @@
+<?php
+
     public $publicProperty;
     protected $protectedProperty;
     private $privateProperty;
@@ -41,4 +43,9 @@
 
     static public function staticMethod()
     {
+    }
+
+    public function methodWithObjectProperties(\ArrayObject $array, \Mandango\Query $query)
+    {
+        return $array;
     }

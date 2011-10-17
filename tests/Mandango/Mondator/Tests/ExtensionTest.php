@@ -193,5 +193,8 @@ EOF
 
         $this->assertTrue($article->hasMethodByName('staticMethod'));
         $this->assertTrue($article->getMethodByName('staticMethod')->isStatic());
+
+        $this->assertTrue($article->hasMethodByName('methodWithObjectProperties'));
+        $this->assertSame('\ArrayObject $array, \Mandango\Query $query', $article->getMethodbyName('methodWithObjectProperties')->getArguments());
     }
 }
