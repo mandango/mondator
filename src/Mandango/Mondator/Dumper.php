@@ -151,7 +151,7 @@ EOF;
 
         // parent class
         if ($parentClass = $this->definition->getParentClass()) {
-            $declaration .= ' extends '.$parentClass;
+            $declaration .= ' extends '.preg_replace('/^\\\\'.$this->definition->getNamespace().'\\\\/', '', $parentClass);
         }
 
         // interfaces
