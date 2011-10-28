@@ -407,7 +407,7 @@ abstract class ClassExtension
                 'autoescape'       => false,
                 'strict_variables' => true,
                 'debug'            => true,
-                'cache'            => $this->twigTempDir = sys_get_temp_dir().'Mondator/'.mt_rand(111111, 999999),
+                'cache'            => $this->twigTempDir = sys_get_temp_dir().'/'.uniqid('mondator_'),
             ));
 
             $this->configureTwig($twig);
