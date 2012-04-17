@@ -1,0 +1,16 @@
+{
+    "hash": "8665213afebcbe338ce9cd165cdb729d",
+    "packages": [
+        {
+            "package": "symfony/class-loader",
+            "version": "dev-master",
+            "source-reference": "8bceaa2f1fed52f6285b2cea39e7ae37fbea1c9b"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "9f322ab2fd21fc70ad58ee62facc0eb5ed2b9db8"
+        }
+    ],
+    "aliases": []
+}
