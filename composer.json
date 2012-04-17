@@ -1,0 +1,20 @@
+{
+    "name": "mandango/mondator",
+    "description": "Easy and flexible class generator for PHP",
+    "keywords": ["class-generator"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":  "Pablo Díez",
+            "email": "pablodip@gmail.com"
+        }
+    ],
+    "require": {
+        "php":       ">=5.3.0",
+        "twig/twig": ">=1.2"
+    },
+    "autoload": {
+        "psr-0": { "Mandango\\Mondator\\": "src/" }
+    }
+}
