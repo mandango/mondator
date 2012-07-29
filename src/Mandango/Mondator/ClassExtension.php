@@ -335,6 +335,7 @@ abstract class ClassExtension
     {
         $twig = $this->getTwig();
 
+        $variables['extension'] = $this;
         $variables['options'] = $this->options;
         $variables['class'] = $this->class;
         $variables['config_class'] = $this->configClass;
