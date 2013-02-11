@@ -261,29 +261,22 @@ class Mondator
      */
     public function dumpContainers(array $containers)
     {
-        // directories
-        foreach ($containers as $container) {
-            foreach ($container->getDefinitions() as $name => $definition) {
-                $output = $definition->getOutput();
-                $dir    = $output->getDir();
-
-                if (!file_exists($dir) && false === @mkdir($dir, 0777, true)) {
-                    throw new \RuntimeException(sprintf('Unable to create the %s directory (%s).', $name, $dir));
-                }
-
-                if (!is_writable($dir)) {
-                    throw new \RuntimeException(sprintf('Unable to write in the %s directory (%s).', $name, $dir));
-                }
-            }
-        }
-
-        // output
         foreach ($containers as $container) {
             foreach ($container->getDefinitions() as $name => $definition) {
                 $output = $definition->getOutput($name);
                 $dir    = $output->getDir();
 
-                $file = $dir.DIRECTORY_SEPARATOR.$definition->getClassName().'.php';
+
+                $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', '/', $definition->getClass()).'.php';
+                $path = dirname($file);
+
+                if (!file_exists($path) && false === @mkdir($path, 0777, true)) {
+                    throw new \RuntimeException(sprintf('Unable to create the %s directory.', $path));
+                }
+
+                if (!is_writable($path)) {
+                    throw new \RuntimeException(sprintf('Unable to write in the %s directory.', $path));
+                }
 
                 if (!file_exists($file) || $output->getOverride()) {
                     $dumper  = new Dumper($definition);
