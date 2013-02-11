@@ -30,6 +30,12 @@ class OutputTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('bar', $output->getDir());
     }
 
+    public function testGetDirForClass()
+    {
+        $output = new Output('/dir');
+        $this->assertSame('/dir/My/Full', $output->getDirForClass('My\Full\Class'));
+    }
+
     public function testOverride()
     {
         $output = new Output('foo');

@@ -153,4 +153,20 @@ class MondatorTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($containers['ArticleTranslationMultiple']));
         $this->assertTrue(isset($containers['Category']));
     }
+
+    public function testProcessUsesNamespaceSeparatorForNestingClassFilesInDirectories()
+    {
+        $mondator = new Mondator();
+        $mondator->setConfigClass('Foo', array());
+        $mondator->setExtensions(array(
+            new \Mandango\Mondator\Tests\Fixtures\Extension\InitDefinition(array(
+                'definition_name' => 'myclass',
+                'class_name'      => 'MiClase\Test',
+                'output_dir'      => sys_get_temp_dir()
+            ))
+        ));
+        $mondator->process();
+
+        $this->assertFileExists(sys_get_temp_dir().'/MiClase/Test.php');
+    }
 }

@@ -265,7 +265,7 @@ class Mondator
         foreach ($containers as $container) {
             foreach ($container->getDefinitions() as $name => $definition) {
                 $output = $definition->getOutput();
-                $dir    = $output->getDir();
+                $dir    = $output->getDirForClass($definition->getClass());
 
                 if (!file_exists($dir) && false === @mkdir($dir, 0777, true)) {
                     throw new \RuntimeException(sprintf('Unable to create the %s directory (%s).', $name, $dir));
@@ -281,7 +281,7 @@ class Mondator
         foreach ($containers as $container) {
             foreach ($container->getDefinitions() as $name => $definition) {
                 $output = $definition->getOutput($name);
-                $dir    = $output->getDir();
+                $dir    = $output->getDirForClass($definition->getClass());
 
                 $file = $dir.DIRECTORY_SEPARATOR.$definition->getClassName().'.php';
 

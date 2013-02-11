@@ -23,10 +23,22 @@ class InitDefinition extends Extension
             'definition_name',
             'class_name',
         ));
+
+        $this->addOption('output_dir', sys_get_temp_dir());
     }
 
     protected function doClassProcess()
     {
-        $this->definitions[$this->getOption('definition_name')] = new Definition($this->getOption('class_name'), new Output(sys_get_temp_dir()));
+        $this->definitions[$this->getOption('definition_name')] = $this->createDefinition();
+    }
+
+    private function createDefinition()
+    {
+        return new Definition($this->getOption('class_name'), $this->createOutput());
+    }
+
+    private function createOutput()
+    {
+        return new Output($this->getOption('output_dir'));
     }
 }
