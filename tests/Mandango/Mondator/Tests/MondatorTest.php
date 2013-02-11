@@ -154,33 +154,22 @@ class MondatorTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($containers['Category']));
     }
 
-    public function testProcessCheckPSR0() 
+    public function testProcessUsesNamespaceSeparatorForNestingClassFilesInDirectories() 
     {
         $mondator = new Mondator();
-        $mondator->setConfigClasses(array(
-            'Article' => array(
-                'name' => 'foo',
-            ),
-            'Category' => array(
-                'name' => 'bar',
-            ),
+        $mondator->setConfigClass('MinimumRequiredConfig', array());
+
+
+        $extension = new \Mandango\Mondator\Tests\Fixtures\Extension\InitDefinition(array(
+            'definition_name' => 'myclass',
+            'class_name' => 'MiClase/Test',
         ));
 
-        $mondator->setExtensions(array(
-            new \Mandango\Mondator\Tests\Fixtures\Extension\Name(),
-            new \Mandango\Mondator\Tests\Fixtures\Extension\InitDefinition(array(
-                'definition_name' => 'myclass',
-                'class_name'      => 'MiClase/Test',
-            )),
-            new \Mandango\Mondator\Tests\Fixtures\Extension\AddProperty(array(
-                'definition' => 'myclass',
-                'visibility' => 'public',
-                'name'       => 'MiPropiedad',
-                'value'      => 'foobar',
-            )),
-        ));
-
+        $mondator->setExtensions(array($extension));
         $mondator->process();
-        $this->assertTrue(file_exists(sys_get_temp_dir() . '/MiClase/Test.php'));
+
+        $expectedOutputFile = sys_get_temp_dir() . '/MiClase/Test.php';
+        $this->assertTrue(file_exists($expectedOutputFile));
+        unlink($expectedOutputFile);
     } 
 }
