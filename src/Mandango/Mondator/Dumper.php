@@ -22,7 +22,7 @@ use Mandango\Mondator\Definition\Definition as BaseDefinition;
  */
 class Dumper
 {
-    private $definition;
+    protected $definition;
 
     /**
      * Constructor.
